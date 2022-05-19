@@ -29,20 +29,6 @@ export default class Album extends React.Component {
       const musics = await getMusics(id);
       const musicaPosicao0 = musics[0];
       const musicas = musics.filter((musica) => musica.kind === 'song');
-      console.log(musics);
-      // const musicasGerais = musicas.map(
-      //   ({
-      //     previewUrl,
-      //     trackName,
-      //     artworkUrl100,
-      //     collectionName,
-      //     artistName,
-      //   }) => ({ previewUrl,
-      //     trackName,
-      //     artworkUrl100,
-      //     collectionName,
-      //     artistName }),
-      // );
       this.setState({ musicGeral: musicas, musicIndex: musicaPosicao0 });
     });
   };
@@ -69,6 +55,7 @@ export default class Album extends React.Component {
                   trackName={ music.trackName }
                   previewUrl={ music.previewUrl }
                   artworkUrl100={ music.artworkUrl100 }
+                  trackId={ music.trackId }
                 />
               ))}
             </div>
