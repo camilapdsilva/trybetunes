@@ -4,7 +4,7 @@ import { addSong } from '../services/favoriteSongsAPI';
 
 export default class MusicCard extends React.Component {
 state ={
-  favorita: {},
+  // favorita: {},
   // isChecked: false,
   loading: false,
 }
@@ -54,4 +54,5 @@ MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   artworkUrl100: PropTypes.string.isRequired,
+  trackId: PropTypes.string.isRequired,
 };
