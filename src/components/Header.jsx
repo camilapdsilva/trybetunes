@@ -24,12 +24,13 @@ render() {
     <header data-testid="header-component">
       <h1>Header</h1>
       {loading ? <p>Carregando...</p> : <p data-testid="header-user-name">{userName}</p>}
-      <Link data-testid="link-to-search" to="/search">Pesquisa</Link>
-      <br />
-      <Link data-testid="link-to-favorites" to="/favorites">Musicas favoritas</Link>
-      <br />
-      <Link data-testid="link-to-profile" to="/profile">Musicas favoritas</Link>
-
+      <nav>
+        <Link data-testid="link-to-search" to="/search">Pesquisa</Link>
+        <br />
+        <Link data-testid="link-to-favorites" to="/favorites">Musicas favoritas</Link>
+        <br />
+        <Link data-testid="link-to-profile" to="/profile">Perfil</Link>
+      </nav>
     </header>
   );
 }
