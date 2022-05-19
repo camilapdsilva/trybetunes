@@ -21,8 +21,6 @@ export default class Search extends React.Component {
     return biblioteca.map((item) => (
 
       <li key={ item.collectionId }>
-        {/* <h2>{item.collectionName}</h2>
-        <p>{item.artistName}</p> */}
         <Link
           data-testid={ `link-to-album-${item.collectionId}` }
           to={ `/album/${item.collectionId}` }
