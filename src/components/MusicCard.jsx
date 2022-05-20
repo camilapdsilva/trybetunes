@@ -1,34 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import getMusics from '../services/musicsAPI';
 
 export default class MusicCard extends React.Component {
 state ={
   loading: false,
-  // favoritas: [],
+  favoritas: [],
   carregandoFavoritos: false,
-  // idFavoritas: [],
-  // isChecked: false,
 }
 
 async componentDidMount() {
   this.setState({ carregandoFavoritos: true });
-  await getFavoriteSongs();
+  const melhores = await getFavoriteSongs();
   this.setState({ carregandoFavoritos: false,
-    // favoritas: melhores,
+    favoritas: melhores,
   });
 }
 
-   changeFavorita = async () => {
-     const { trackName, previewUrl, artworkUrl100, trackId } = this.props;
-     this.setState({ loading: true });
-     await addSong({ trackName, previewUrl, artworkUrl100, trackId });
-     this.setState({ loading: false });
+   changeFavorita = async ({ target }) => {
+     const { trackId } = this.props;
+     const { checked } = target;
+     const { favoritas } = this.state;
+     const musicaFavorita = await getMusics(trackId);
+     if (checked) {
+       await addSong(musicaFavorita);
+       this.setState({ favoritas: [...favoritas, musicaFavorita] });
+     }
+     if (!checked) {
+       await removeSong(trackId);
+       const favoritasAtuais = favoritas.filter((musica) => musica.trackId !== trackId);
+       this.setState({ favoritas: favoritasAtuais });
+     }
    }
 
    render() {
      const { trackName, previewUrl, artworkUrl100, trackId } = this.props;
-     const { loading, carregandoFavoritos } = this.state;
+     const { loading, carregandoFavoritos, favoritas } = this.state;
      return (
        <div>
          {loading && <div>Carregando...</div>}
@@ -49,7 +57,7 @@ async componentDidMount() {
                  id="favorita"
                  type="checkbox"
                  name="favorita"
-                 //  checked={ isChecked }
+                 checked={ favoritas.some((item) => item.trackId === trackId) }
                  data-testid={ `checkbox-music-${trackId}` }
                  onClick={ this.changeFavorita }
                />
