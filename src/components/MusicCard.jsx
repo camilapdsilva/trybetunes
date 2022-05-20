@@ -7,14 +7,17 @@ state ={
   loading: false,
   // favoritas: [],
   carregandoFavoritos: false,
-  idFavoritas: [],
+  // idFavoritas: [],
   // isChecked: false,
 }
 
 async componentDidMount() {
   this.setState({ carregandoFavoritos: true });
-  const melhores = await getFavoriteSongs();
-  this.setState({ carregandoFavoritos: false, favoritas: melhores });
+  await getFavoriteSongs();
+  this.setState({
+    carregandoFavoritos: false,
+    // favoritas: melhores,
+  });
 }
 
    changeFavorita = async () => {
