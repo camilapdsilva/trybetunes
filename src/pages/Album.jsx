@@ -12,6 +12,7 @@ export default class Album extends React.Component {
     },
     loading: false,
     musicGeral: [],
+
   };
 
   async componentDidMount() {
