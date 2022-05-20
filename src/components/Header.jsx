@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
+import './Header.css';
 
 export default class Header extends React.Component {
 state = {
@@ -22,7 +23,6 @@ render() {
   const { userName, loading } = this.state;
   return (
     <header data-testid="header-component">
-      <h1>Header</h1>
       {loading ? <p>Carregando...</p> : <p data-testid="header-user-name">{userName}</p>}
       <nav>
         <Link data-testid="link-to-search" to="/search">Pesquisa</Link>
