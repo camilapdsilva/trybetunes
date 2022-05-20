@@ -14,8 +14,7 @@ state ={
 async componentDidMount() {
   this.setState({ carregandoFavoritos: true });
   await getFavoriteSongs();
-  this.setState({
-    carregandoFavoritos: false,
+  this.setState({ carregandoFavoritos: false,
     // favoritas: melhores,
   });
 }
