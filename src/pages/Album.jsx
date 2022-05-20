@@ -40,18 +40,18 @@ export default class Album extends React.Component {
     const { checked, name } = target;
     const { favoritas } = this.state;
     const musicaClicada = await getMusics(id);
-    const musicaSelecionada = musicaClicada.find((item) => item.trackId === Number(name));
-    console.log(id);
+    const musicSelection = musicaClicada.find((item) => item.trackId === Number(name));
+    // console.log(id);
     if (checked) {
-      await addSong(musicaSelecionada);
+      await addSong(musicSelection);
       this.setState((prevState) => ({
-        favoritas: [...prevState.favoritas, musicaSelecionada], loading2: false }));
+        favoritas: [...prevState.favoritas, musicSelection], loading2: false }));
       // this.atualizaFavoritos();
     }
     if (!checked) {
-      await removeSong(musicaSelecionada);
-      const favoritasAtuais = favoritas.filter((musica) => musica.trackId !== id);
-      this.setState({ favoritas: favoritasAtuais,
+      await removeSong(musicSelection);
+      const Atual = favoritas.filter((music) => music.trackId !== musicSelection.trackId);
+      this.setState({ favoritas: Atual,
         loading2: false });
       // this.atualizaFavoritos();
     }
