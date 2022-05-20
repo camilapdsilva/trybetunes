@@ -19,6 +19,7 @@ async componentDidMount() {
 }
 
    changeFavorita = async ({ target }) => {
+     this.setState({ loading: true });
      const { trackId } = this.props;
      const { checked } = target;
      const { favoritas } = this.state;
@@ -26,11 +27,13 @@ async componentDidMount() {
      if (checked) {
        await addSong(musicaFavorita);
        this.setState({ favoritas: [...favoritas, musicaFavorita] });
+       this.setState({ loading: false });
      }
      if (!checked) {
        await removeSong(trackId);
        const favoritasAtuais = favoritas.filter((musica) => musica.trackId !== trackId);
        this.setState({ favoritas: favoritasAtuais });
+       this.setState({ loading: false });
      }
    }
 
