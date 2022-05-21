@@ -1,41 +1,56 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import { getUser } from '../services/userAPI';
+import { getUser, updateUser } from '../services/userAPI';
 
 export default class ProfileEdit extends React.Component {
   state = {
     carregandoApi: false,
+    carregandoUpdate: false,
     usuario: {},
     isDisabled: true,
-    name: '',
-    email: '',
-    image: '',
-    description: '',
+
   }
 
   async componentDidMount() {
+    this.setState({ carregandoApi: true });
     const user = await getUser();
-    this.setState({ usuario: user });
+    this.setState({ carregandoApi: false, usuario: user }, () => this
+      .setState({ isDisabled: this.validaEntradas() }));
   }
 
-  validaEntrada = () => {
-    const { name,
-      email,
-      image,
-      description } = this.state;
+  validaEntradas = () => {
+    const { usuario } = this.state;
+    const { name, email, image, description } = usuario;
     const min = 0;
-    if (name.length < min
-      && email < min
-      && image < min
-      && description < min) {
-      this.setState({ isDisabled: true });
-    } else {
-      this.setState({ isDisabled: false });
+
+    if (name.length > min
+        && image.length > min
+        && description.length > min
+        && email.includes('@')
+    ) {
+      return false;
     }
+    return true;
+  }
+
+  handleChange = ({ target }) => {
+    const { value, name } = target;
+    // const { usuario } = this.state;
+    this.setState(({ usuario }) => ({ usuario: { ...usuario, [name]: value } }));
+    this.setState({ isDisabled: this.validaEntradas() });
+  }
+
+  handleSubmit = async () => {
+    const { usuario } = this.state;
+    const { history } = this.props;
+    this.setState({ carregandoUpdate: true });
+    await updateUser(usuario);
+    history.push('/profile');
   }
 
   render() {
-    const { carregandoApi, usuario, isDisabled } = this.state;
+    const { carregandoApi, usuario, isDisabled, carregandoUpdate } = this.state;
     const { name,
       email,
       image,
@@ -45,7 +60,7 @@ export default class ProfileEdit extends React.Component {
         <Header />
         <h1>Sou ProfileEdit</h1>
         {carregandoApi && <p>Carregando...</p>}
-
+        {carregandoUpdate && <p>Carregando...</p>}
         <form>
           <label htmlFor="name">
             Nome:
@@ -53,7 +68,9 @@ export default class ProfileEdit extends React.Component {
               data-testid="edit-input-name"
               type="text"
               name="name"
-              value={ name }
+              defaultValue={ name }
+              onChange={ this.handleChange }
+              required
 
             />
           </label>
@@ -65,8 +82,9 @@ export default class ProfileEdit extends React.Component {
               data-testid="edit-input-email"
               type="email"
               name="email"
-              value={ email }
-
+              defaultValue={ email }
+              onChange={ this.handleChange }
+              required
             />
           </label>
           <br />
@@ -77,7 +95,9 @@ export default class ProfileEdit extends React.Component {
               data-testid="edit-input-description"
               type="text"
               name="description"
-              value={ description }
+              defaultValue={ description }
+              onChange={ this.handleChange }
+              required
             />
           </label>
           <br />
@@ -88,7 +108,9 @@ export default class ProfileEdit extends React.Component {
               data-testid="edit-input-image"
               type="text"
               name="image"
-              value={ image }
+              defaultValue={ image }
+              onChange={ this.handleChange }
+              required
             />
           </label>
           <br />
@@ -96,6 +118,7 @@ export default class ProfileEdit extends React.Component {
             data-testid="edit-button-save"
             type="submit"
             disabled={ isDisabled }
+            onClick={ this.handleSubmit }
           >
             Salvar
 
@@ -105,3 +128,6 @@ export default class ProfileEdit extends React.Component {
     );
   }
 }
+ProfileEdit.propTypes = {
+  history: PropTypes.string.isRequired,
+};
