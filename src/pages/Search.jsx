@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import './Search.css';
 
 export default class Search extends React.Component {
   state = {
@@ -16,12 +17,13 @@ export default class Search extends React.Component {
   cardAlbum = () => {
     const { biblioteca } = this.state;
     if (biblioteca.length === 0) {
-      return <p>Nenhum álbum foi encontrado</p>;
+      return <p className="nenhum-album">Nenhum álbum foi encontrado</p>;
     }
     return biblioteca.map((item) => (
 
-      <li key={ item.collectionId }>
+      <p key={ item.collectionId }>
         <Link
+          className="search-lista"
           data-testid={ `link-to-album-${item.collectionId}` }
           to={ `/album/${item.collectionId}` }
         >
@@ -29,7 +31,7 @@ export default class Search extends React.Component {
           {' '}
 
         </Link>
-      </li>
+      </p>
 
     ));
   }
@@ -63,12 +65,13 @@ export default class Search extends React.Component {
       <div data-testid="page-search">
         { loading ? <p>Carregando...</p>
           : (
-            <div>
+            <div className="container-search">
               <Header />
 
-              <form>
+              <form className="form-horizontal">
                 <label htmlFor="busca">
                   <input
+                    className="input-search"
                     id="busca"
                     type="text"
                     name="artista"
@@ -79,6 +82,7 @@ export default class Search extends React.Component {
                 </label>
 
                 <button
+                  className="search-button"
                   data-testid="search-artist-button"
                   type="button"
                   disabled={ isDisabled }
@@ -91,14 +95,14 @@ export default class Search extends React.Component {
 
               { lastSearch
                 && (
-                  <p>
+                  <p className="search-p-result">
                     Resultado de álbuns de:
                     {' '}
                     {showArtista }
                   </p>
                 )}
 
-              <ul>{this.cardAlbum()}</ul>
+              <p className="search-lista">{this.cardAlbum()}</p>
             </div>
           )}
       </div>

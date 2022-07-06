@@ -1,0 +1,44 @@
+.container-meu-perfil {
+  background-color: #26335a;
+  color: #ffd23f;
+  display: flex;
+  flex-direction: column;
+  height: 1000px;
+}
+
+.page-title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.container-names {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-names2 {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.names {
+  margin-right: 10px;
+}
+
+.link-edita {
+  align-items: center;
+  background-color: #3bceac;
+  border-radius: 8px;
+  color: #2a0238;
+  display: flex;
+  font-weight: 600;
+  height: 40px;
+  justify-content: center;
+  margin-top: 60px;
+  text-decoration: none;
+  width: 200px;
+}

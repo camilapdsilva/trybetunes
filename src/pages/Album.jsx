@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import './Album.css';
 
 export default class Album extends React.Component {
   state = {
@@ -81,19 +82,40 @@ export default class Album extends React.Component {
       loading2 } = this.state;
     const { artistName, collectionName, artworkUrl100 } = musicIndex;
     return (
-      <div data-testid="page-album">
+      <div
+        className="album-container"
+        data-testid="page-album"
+      >
         <Header />
         { loading
         && (
-          <div>
-            <h1 data-testid="artist-name">{artistName}</h1>
-            <h2 data-testid="album-name">{collectionName}</h2>
-            <img src={ artworkUrl100 } alt="album" />
 
-            {loading2 && <div>Carregando...</div>}
-            {carregandoFavoritos ? <div>Carregando...</div> : (
+          <div className="container-album-title-musics">
+            <div className="container-album-title">
+              <img className="img-album" src={ artworkUrl100 } alt="album" />
 
               <div>
+                <h1
+                  className="album-title1"
+                  data-testid="artist-name"
+                >
+                  {artistName}
+
+                </h1>
+
+                <h2
+                  className="album-title2"
+                  data-testid="album-name"
+                >
+                  {collectionName}
+
+                </h2>
+              </div>
+            </div>
+            {loading2 && <h1 className="album-title1">Carregando...</h1>}
+            {carregandoFavoritos ? <h1 className="album-title1">Carregando...</h1> : (
+
+              <div className="container-audios">
                 {musicGeral.map((music) => (
                   <MusicCard
                     key={ music.trackName }

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './MusicCard.css';
 
 export default class MusicCard extends React.Component {
   render() {
@@ -11,17 +12,25 @@ export default class MusicCard extends React.Component {
 
     return (
       <div>
-        <div>
-          <p>{trackName}</p>
-          <audio data-testid="audio-component" src={ previewUrl } controls>
-            <track kind="captions" />
-            O seu navegador não suporta o elemento
-            {' '}
-            <code>audio</code>
-
-          </audio>
-          <label htmlFor="favorita">
-            Favorita
+        <div className="card">
+          <div>
+            <p className="name-musica">{trackName}</p>
+            <audio
+              data-testid="audio-component"
+              src={ previewUrl }
+              controls
+            >
+              <track kind="captions" />
+              O seu navegador não suporta o elemento
+              {' '}
+              <code>audio</code>
+            </audio>
+          </div>
+          <label
+            className="check-favorita"
+            htmlFor="favorita"
+          >
+            Favorita:
             <input
               id="favorita"
               type="checkbox"

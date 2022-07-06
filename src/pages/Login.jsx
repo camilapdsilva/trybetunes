@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
+import './Login.css';
+import fone from './fone-de-ouvido.png';
 
 export default class Login extends React.Component {
 state = {
@@ -35,11 +37,24 @@ render() {
   const { loading, name, isLoginButtonDisabled } = this.state;
 
   return (
-    <div data-testid="page-login">
+    <div
+      className="login"
+      data-testid="page-login"
+    >
+      <div className="container-trybetunes">
+        <img
+          className="fone"
+          src={ fone }
+          alt="fone de ouvido"
+        />
+        <span className="trybetunes">TrybeTunes</span>
+      </div>
 
-      {loading ? <div>Carregando...</div> : (
-        <div>
-          <h1>Login</h1>
+      {loading ? <h1 className="login2">Carregando...</h1> : (
+        <div
+          className="login2"
+        >
+          <h1>Login: </h1>
           <form>
             <label htmlFor="login-name-input">
               <input

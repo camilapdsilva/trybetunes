@@ -1,16 +1,4 @@
 * {
-  background-color: #282c34;
-  color: white;
-  text-align: center;
-}
-
-.entrar {
-  background-color: rgb(228, 139, 139);
-  color: black;
-  height: 50px;
-  width: 100px;
-}
-
-.entrar:disabled {
-  opacity: 0.3;
+  margin: 0;
+  padding: 0;
 }

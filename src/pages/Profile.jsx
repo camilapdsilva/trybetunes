@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { getUser } from '../services/userAPI';
+import './Profile.css';
 
 export default class Profile extends React.Component {
   state = {
@@ -22,27 +23,42 @@ export default class Profile extends React.Component {
       description } = usuario;
 
     return (
-      <div data-testid="page-profile">
+      <div
+        className="page-profile"
+        data-testid="page-profile"
+      >
         <Header />
-        <h1>Sou Profile</h1>
-        {carregandoApi ? <p>Carregando...</p> : (
-          <div>
-            <img data-testid="profile-image" src={ image } alt="profile" />
-            <p>
+        <div className="container-meu-perfil">
+          {carregandoApi ? <h1 className="page-title">Carregando...</h1> : (
+            <div className="container-names">
+              <h1 className="page-title">Meu perfil</h1>
+              <img data-testid="profile-image" src={ image } alt="Minha foto" />
 
-              {name}
-            </p>
-            <p>
+              <div className="container-names2">
+                <h3 className="names">Nome:</h3>
+                <span className="names-infos">
+                  {name}
+                </span>
+              </div>
 
-              {email}
-            </p>
-            <p>
+              <div className="container-names2">
+                <h3 className="names">E-mail:</h3>
+                <span className="names-infos">
+                  {email}
+                </span>
+              </div>
 
-              {description}
-            </p>
-            <Link to="/profile/edit">Editar perfil</Link>
-          </div>
-        )}
+              <div className="container-names2">
+                <h3 className="names">Descrição:</h3>
+                <span className="names-infos">
+                  {description}
+                </span>
+              </div>
+
+              <Link className="link-edita" to="/profile/edit">Editar perfil</Link>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

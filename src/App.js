@@ -16,7 +16,6 @@ class App extends React.Component {
     return (
 
       <div>
-        <p>TrybeTunes</p>
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={ Login } />

@@ -1,0 +1,53 @@
+.container-search {
+  align-content: center;
+  background-color: #1c2541;
+  display: flex;
+  flex-direction: column;
+  height: 1500px;
+}
+
+.form-horizontal {
+  display: flex;
+  justify-content: center;
+}
+
+.input-search {
+  border: 2px solid #0ead69;
+  border-radius: 12px;
+  color: rgb(3, 92, 95);
+  height: 10px;
+  margin-right: 20px;
+  margin-top: 30px;
+  padding: 16px;
+  width: 300px;
+}
+
+.search-button {
+  background-color: #3bceac;
+  border: none;
+  border-radius: 12px;
+  color: #2a0238;
+  font-weight: 600;
+  margin-top: 30px;
+  width: 100px;
+}
+
+.nenhum-album {
+  color: #ffd23f;
+  margin-top: 30px;
+}
+
+.search-p-result {
+  color: #ffd23f;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.search-lista {
+  align-items: center;
+  color: #ece9de;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}

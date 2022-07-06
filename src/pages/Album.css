@@ -1,0 +1,30 @@
+.container-album-title-musics {
+  background-color: #26335a;
+  color: #ffd23f;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container-album-title {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.img-album {
+  display: flex;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  width: 20%;
+}
+
+.album-title1 {
+  display: flex;
+  justify-content: center;
+}
+
+.album-title2 {
+  display: flex;
+  justify-content: center;
+}

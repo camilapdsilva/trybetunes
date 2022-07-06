@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { getUser, updateUser } from '../services/userAPI';
+import './ProfileEdit.css';
 
 export default class ProfileEdit extends React.Component {
   state = {
@@ -58,72 +59,81 @@ export default class ProfileEdit extends React.Component {
     return (
       <div data-testid="page-profile-edit">
         <Header />
-        <h1>Sou ProfileEdit</h1>
-        {carregandoApi && <p>Carregando...</p>}
-        {carregandoUpdate && <p>Carregando...</p>}
-        <form>
-          <label htmlFor="name">
-            Nome:
-            <input
-              data-testid="edit-input-name"
-              type="text"
-              name="name"
-              defaultValue={ name }
-              onChange={ this.handleChange }
-              required
+        <div className="container-edita-perfil">
+          {carregandoUpdate && <p>Carregando...</p>}
+          {carregandoApi ? <h1 className="titles-edita">Carregando...</h1> : (
+            <div className="container-inputs">
+              <h1 className="titles-edita">Editar Perfil</h1>
+              <form>
+                <label htmlFor="name">
+                  Nome:
+                  <input
+                    className="input-infos"
+                    data-testid="edit-input-name"
+                    type="text"
+                    name="name"
+                    defaultValue={ name }
+                    onChange={ this.handleChange }
+                    required
 
-            />
-          </label>
-          <br />
-          <label htmlFor="email">
-            {' '}
-            Email:
-            <input
-              data-testid="edit-input-email"
-              type="email"
-              name="email"
-              defaultValue={ email }
-              onChange={ this.handleChange }
-              required
-            />
-          </label>
-          <br />
-          <label htmlFor="description">
-            {' '}
-            Descrição:
-            <input
-              data-testid="edit-input-description"
-              type="text"
-              name="description"
-              defaultValue={ description }
-              onChange={ this.handleChange }
-              required
-            />
-          </label>
-          <br />
-          <label htmlFor="image">
-            {' '}
-            Imagem:
-            <input
-              data-testid="edit-input-image"
-              type="text"
-              name="image"
-              defaultValue={ image }
-              onChange={ this.handleChange }
-              required
-            />
-          </label>
-          <br />
-          <button
-            data-testid="edit-button-save"
-            type="submit"
-            disabled={ isDisabled }
-            onClick={ this.handleSubmit }
-          >
-            Salvar
+                  />
+                </label>
+                <br />
+                <label htmlFor="email">
+                  {' '}
+                  Email:
+                  <input
+                    className="input-infos"
+                    data-testid="edit-input-email"
+                    type="email"
+                    name="email"
+                    defaultValue={ email }
+                    onChange={ this.handleChange }
+                    required
+                  />
+                </label>
+                <br />
+                <label htmlFor="description">
+                  {' '}
+                  Descrição:
+                  <input
+                    className="input-infos"
+                    data-testid="edit-input-description"
+                    type="text"
+                    name="description"
+                    defaultValue={ description }
+                    onChange={ this.handleChange }
+                    required
+                  />
+                </label>
+                <br />
+                <label htmlFor="image">
+                  {' '}
+                  Imagem:
+                  <input
+                    className="input-infos"
+                    data-testid="edit-input-image"
+                    type="text"
+                    name="image"
+                    defaultValue={ image }
+                    onChange={ this.handleChange }
+                    required
+                  />
+                </label>
+                <br />
+                <button
+                  data-testid="edit-button-save"
+                  type="submit"
+                  disabled={ isDisabled }
+                  onClick={ this.handleSubmit }
+                >
+                  Salvar
 
-          </button>
-        </form>
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

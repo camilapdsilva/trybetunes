@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 import { removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import './Favorites.css';
 
 export default class Favorites extends React.Component {
   state = {
@@ -31,9 +32,12 @@ export default class Favorites extends React.Component {
     const { favoritas, carregandoFavoritos, loading2 } = this.state;
     console.log(favoritas);
     return (
-      <div data-testid="page-favorites">
+      <div
+        className="page-favorites"
+        data-testid="page-favorites"
+      >
         <Header />
-        <h1>Sou Favorites</h1>
+        <h1 className="page-title">Minhas músicas favoritas</h1>
         { loading2 && <p>Carregando...</p>}
         { carregandoFavoritos ? <p>Carregando...</p> : (
           <div>
